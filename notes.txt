@@ -1,0 +1,66 @@
+Ideas from the figma forum:
+
+- Custom URL + SEO
+	- https://forum.figma.com/t/figma-prototype-under-custom-url/54631
+	- https://www.reddit.com/r/UXDesign/comments/schpid/using_figma_to_host_portfolio/
+	- https://forum.figma.com/t/rename-figma-url-or-create-custom-figma-url-name/28843
+
+- Get rid of "proto"
+	- https://forum.figma.com/t/is-it-possible-to-change-a-prototype-url-to-share-with-someone-else/945
+
+- Want to use figma prototype with custom domain and address for each page of the prototype
+	- https://forum.figma.com/t/host-figma-prototype-in-your-domain/14351
+
+- Configure prototype link setting in an editor
+	- https://forum.figma.com/t/configure-prototype-links-settings-in-figma-editor/58900
+		- https://www.linkedin.com/in/brandpod/?original_referer=https%3A%2F%2Fwww%2Egoogle%2Ecom%2F&originalSubdomain=za
+
+- Blog about hosting figma prototype portfolio as a website on google sites
+	- https://medium.com/@lalikaey/how-to-set-up-the-figma-prototype-portfolio-website-8b41ec4504be
+
+- Cursor settings for desktop prototypes
+	- https://forum.figma.com/t/cursors-for-prototyping/19860
+	- https://forum.figma.com/t/how-to-change-the-look-of-mouse-cursor-in-figma-prototype/39661
+
+- Record prototype and send samples as gifs 
+	- https://forum.figma.com/t/export-record-prototype-to-video-or-gif/1038
+
+- Presentation notes on figma presentation
+	- https://forum.figma.com/t/presenter-notes/21630
+
+- Password protect prototype [LAUNCHED but only in paid version]
+	- https://forum.figma.com/t/launched-password-protect-prototypes-for-user-research/3350
+
+- More user-friendly figma URL
+	- https://forum.figma.com/t/need-short-urls-that-are-user-friendly/786/3
+
+============================================================================================================
+
+Feature ideas:
+
+- Custom URLs
+- Popup message that tells which device to ideally use
+- Page view count
+- Password protect
+- Gifs recording
+- Presentation mode with notes
+- Cursor changing (professional looking)
+- Possibly arrange URLs as versions of one project
+
+Competitors:
+- Pygma plugin
+- Framer (maybe)
+- figma.fun
+
+=============================================================================================================
+
+Other links:
+
+- https://help.figma.com/hc/en-us/articles/360039827134-Embed-files-and-prototypes
+
+=============================================================================================================
+
+Questions:
+
+- Can I convert a normal share link into an embed link and use it as an embed?
+- Is there a way to record the embed in multiple resolutions upto very high res for pro users?

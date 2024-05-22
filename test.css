@@ -1,0 +1,72 @@
+/* .resizable-div {
+  width: 100%;
+  height: 100%;
+  resize: horizontal;
+  overflow: auto; 
+} */
+
+/* ------------------------ */
+
+/* .resizable-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.resizable-bar {
+  width: 10px;
+  height: 200px;
+  background-color: #333;
+  cursor: ew-resize;
+}
+
+.resizable-bar-left {
+  margin-right: 5px;
+}
+
+.resizable-bar-right {
+  margin-left: 5px;
+}
+
+.resizable-div {
+  width: 100%;
+  height: 100%;
+  background-color: lightblue;
+  overflow: auto;
+  border: 1px solid black;
+} */
+
+.resizable-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+
+.resizable-bar {
+  width: 10px;
+  height: 100%;
+  background-color: #333;
+  cursor: ew-resize;
+  position: absolute;
+  top: 0;
+}
+
+.resizable-bar-left {
+  left: -5px; /* Adjusted to be attached to the left side of the resizable div */
+}
+
+.resizable-bar-right {
+  right: -5px; /* Adjusted to be attached to the right side of the resizable div */
+}
+
+.resizable-div {
+  width: 300px;
+  height: 200px;
+  background-color: lightblue;
+  overflow: auto;
+  border: 1px solid black;
+  position: relative;
+}

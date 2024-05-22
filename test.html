@@ -1,0 +1,136 @@
+<html>
+	<!-- <head>
+		<link rel="stylesheet" href="test.css">
+	</head> -->
+	<body allow="display-capture">
+		<!-- <div class="resizable-container"> -->
+			<!-- <div class="resizable-bar resizable-bar-left"></div> -->
+			<div allow="display-capture" class="resizable-div" id="resizableDiv" style="border: 1px solid black; background-color: white; resize:both; overflow:auto; height: 50%; width:25%;">
+				<!-- <iframe style="border: 0px solid rgba(0, 0, 0, 0);" width="100%" height="100%" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FnBfNoBuFcZlgsF8EJPXqBc%2FFoodMood-case-study%3Fpage-id%3D1%253A3%26type%3Ddesign%26node-id%3D1608-4545%26viewport%3D1431%252C116%252C0.15%26t%3DDrI5G96zNXEaqZxI-1%26scaling%3Dscale-down%26starting-point-node-id%3D1608%253A4575%26mode%3Ddesign%26hide-ui%3D1" allowfullscreen></iframe> -->
+				<iframe allow="display-capture" id="figmaEmbed" style="border: 0px solid rgba(0, 0, 0, 0);" width="100%" height="100%" allowfullscreen></iframe>
+				<!-- <iframe id="figmaEmbed" style="border: 0px solid rgba(0, 0, 0, 0);" width="100%" height="100%" allowfullscreen allow="display-capture" referrerpolicy="no-referrer" sandbox="allow-scripts allow-forms allow-modals allow-pointer-lock allow-same-origin"></iframe> -->
+			</div>
+			<!-- <canvas id="canvas" style="display: none;"></canvas> -->
+
+			<h1>Something doing something</h1>
+			<label for="inputText">Enter text:</label>
+			<input type="text" id="inputText" placeholder="Type something...">
+			<button id="modifyButton">Embed</button>
+			<p>Text link: <span id="outputText"></span></p>
+			
+			<br/>
+			<video id="preview" style="border: 1px solid black;" width="300" height="200" autoplay muted></video>
+			<video id="recording" width="300" height="200" controls></video>
+			<button id="startButton">Record</button>
+			<button id="stopButton">Stop</button>
+			<a id="downloadButton">Download</a>
+			<div>
+				<pre id="log"></pre>
+			</div>
+
+			<script>
+				// Text link logic
+				document.getElementById('modifyButton').onclick = function() {
+						// Get the input text
+						const inputText = document.getElementById('inputText').value;
+
+						// Define the regex pattern and the replacement string
+						// For example, replacing all digits with '#'
+						// const regex = /\d/g;
+						// const replacement = '#';
+
+						// Perform the regex replacement
+						// const modifiedText = inputText.replace(regex, replacement);
+						
+						// Display the modified text
+						document.getElementById('outputText').innerText = inputText;
+
+						// Set the iframe src to the modified link
+						document.getElementById('figmaEmbed').src = inputText;
+				};
+				
+				let divToRecord = document.getElementById("figmaEmbed");		
+				let startButton = document.getElementById("startButton");
+				let downloadButton = document.getElementById("downloadButton");
+				let logElement = document.getElementById("log");
+				let recorder;
+
+				function log(msg) {
+					logElement.innerHTML = msg + "\n";
+				}
+
+				function stop(stream) {
+					if(recorder.state === 'recording') {
+						recorder.stop();
+					}
+
+					stream.getTracks().forEach((track) => track.stop());
+				}
+
+				function startRecording(stream) {
+					let data = [];
+					recorder = new MediaRecorder(stream);
+					
+					recorder.ondataavailable = event => data.push(event.data);
+					recorder.start();
+
+					log("Recording...")
+
+					let stopped = new Promise((resolve, reject) => {
+						recorder.onstop = resolve;
+						recorder.onerror = (event) => reject(event.name);
+					});
+
+					return Promise.all([stopped, recorder]).then(() => data)
+				}
+
+				
+				startButton.addEventListener(
+					"click", 
+					function () {
+						navigator.mediaDevices
+						.getDisplayMedia({
+							video: true,
+						})
+						.then(stream => {
+							// stream - MediaStreamTrack
+							preview.srcObject = stream;
+							preview.captureStream = preview.captureStream || preview.mozCaptureStream;
+
+							return new Promise((resolve) => (preview.onplaying = resolve));
+						})
+						.then(() => startRecording(preview.captureStream()))
+						.then((recordedChunks) => {
+							let recordedBlob = new Blob(recordedChunks, {
+								type: "video/webm",
+							});
+
+							recording.src = URL.createObjectURL(recordedBlob);
+							downloadButton.href = recording.src;
+							downloadButton.download = 'RecordedVideo.webm'
+
+							log("Successfully recorded " + recordedBlob.size + " bytes of " + recordedBlob.type + " media.")
+						})
+						.catch(log);
+					},
+					false
+				);
+
+				
+				stopButton.addEventListener('click', function() {
+					stop(preview.srcObject);
+				}, false)
+			</script>
+
+			
+
+			<!-- <div class="resizable-bar resizable-bar-right"></div> -->
+		<!-- </div> -->
+		<!-- <div class="parent">
+			<div class="child"></div>
+		</div> -->
+
+		<!-- <script src="test.js" defer></script> -->
+	</body>
+</html>
+<!-- https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FnBfNoBuFcZlgsF8EJPXqBc%2FFoodMood-case-study%3Fpage-id%3D1%253A3%26type%3Ddesign%26node-id%3D1608-4545%26viewport%3D1431%252C116%252C0.15%26t%3DDrI5G96zNXEaqZxI-1%26scaling%3Dscale-down%26starting-point-node-id%3D1608%253A4575%26mode%3Ddesign%26hide-ui%3D1 -->
